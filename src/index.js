@@ -2,7 +2,7 @@
 import "./pages/index.css";
 import { initialCards } from "./scripts/cards";
 import { openModal, closeModal, closeModalOnOverlay } from "./scripts/modal";
-import { renderCard } from "./scripts/card";
+import { createCard, likeCard, deleteCard } from "./scripts/card";
 
 // Переменные
 const placesList = document.querySelector(".places__list");
@@ -17,6 +17,21 @@ const popupNewCardForm = document.forms["new-place"];
 const popupImageElement = document.querySelector(".popup_type_image");
 const popupImage = popupImageElement.querySelector(".popup__image");
 const popupCaption = popupImageElement.querySelector(".popup__caption");
+const renderCard = (
+  item,
+  container,
+  likeCard,
+  deleteCard,
+  openFullImageFn,
+  place = "end"
+) => {
+  const cardElement = createCard(item, deleteCard, likeCard, openFullImageFn);
+  if (place === "end") {
+    container.append(cardElement);
+  } else {
+    container.prepend(cardElement);
+  }
+};
 
 // Изменение профиля
 
@@ -86,11 +101,20 @@ popupProfile.addEventListener("click", (evt) => {
   closeModalOnOverlay(evt);
 });
 
-// Крестик
-document.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("popup__close")) {
-    closeModal(evt.target.parentNode.parentNode);
-  }
+// Крестики
+
+popupNewCard.querySelector(".popup__close").addEventListener("click", () => {
+  closeModal(popupNewCard);
+});
+
+popupImageElement
+  .querySelector(".popup__close")
+  .addEventListener("click", () => {
+    closeModal(popupImageElement);
+  });
+
+popupProfile.querySelector(".popup__close").addEventListener("click", () => {
+  closeModal(popupProfile);
 });
 
 // Карточки
@@ -100,15 +124,6 @@ const openImagePopup = (imageURL, imageAlt, title) => {
   popupImage.alt = imageAlt;
   popupCaption.textContent = title;
   openModal(popupImageElement);
-};
-
-const likeCard = (evt) => {
-  evt.target.classList.toggle("card__like-button_is-active");
-};
-
-const deleteCard = (evt) => {
-  const parent = evt.target.closest(".card");
-  parent.remove();
 };
 
 // @todo: Вывести карточки на страницу

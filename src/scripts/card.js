@@ -8,7 +8,7 @@ const createCard = (card, deleteCardFn, likeCardFn, openFullImageFn) => {
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
   cardImage.src = card.link;
-  cardImage.alt = card.description;
+  cardImage.alt = card.name;
   cardTitle.textContent = card.name;
 
   cardDeleteButton.addEventListener("click", (evt) => {
@@ -25,22 +25,13 @@ const createCard = (card, deleteCardFn, likeCardFn, openFullImageFn) => {
   return cardElement;
 };
 
-// Создание карточки
-
-const renderCard = (
-  item,
-  container,
-  likeCard,
-  deleteCard,
-  openFullImageFn,
-  place = "end"
-) => {
-  const cardElement = createCard(item, deleteCard, likeCard, openFullImageFn);
-  if (place === "end") {
-    container.append(cardElement);
-  } else {
-    container.prepend(cardElement);
-  }
+const likeCard = (evt) => {
+  evt.target.classList.toggle("card__like-button_is-active");
 };
 
-export { renderCard };
+const deleteCard = (evt) => {
+  const parent = evt.target.closest(".card");
+  parent.remove();
+};
+
+export { createCard, likeCard, deleteCard };
