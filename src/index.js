@@ -2,22 +2,29 @@
 import "./pages/index.css";
 import { openModal, closeModal, closeModalOnOverlay } from "./scripts/modal";
 import { createCard, handleLikes } from "./scripts/card";
-import { enableValidation, clearValidation, validationConfig} from "./scripts/validation";
 import {
-  getCards,
-  getUser,
-} from "./scripts/api";
+  enableValidation,
+  clearValidation,
+  validationConfig,
+} from "./scripts/validation";
+import { getCards, getUser } from "./scripts/api";
 // Импорт функций для работы с формой удаления карточки
-import { handleCardDelete, openPopupDelete } from "./scripts/forms/deleteForm.js";
+import {
+  handleCardDelete,
+  openPopupDelete,
+} from "./scripts/forms/deleteForm.js";
 
 // Импорт функций для работы с формой изменения аватара
 import { handleAvatarFormSubmit } from "./scripts/forms/avatarForm.js";
 
 // Импорт функций для работы с формой добавления новой карточки
-import { handleNewCardFormSubmit} from "./scripts/forms/newCardsForm.js";
+import { handleNewCardFormSubmit } from "./scripts/forms/newCardsForm.js";
 
 // Импорт функций для работы с формой редактирования профиля
-import { handleFormSubmit, setInitialEditProfileFormValues} from "./scripts/forms/editForm.js";
+import {
+  handleFormSubmit,
+  setInitialEditProfileFormValues,
+} from "./scripts/forms/editForm.js";
 
 // Переменные
 const placesList = document.querySelector(".places__list");
@@ -35,7 +42,6 @@ const popupCaption = popupImageElement.querySelector(".popup__caption");
 const avatarForm = document.querySelector(".popup_type_avatar");
 const deleteCardForm = document.forms["delete-card"];
 const avatarImage = document.querySelector(".profile__image");
-
 
 // Выполнение инициализации валидации формы
 enableValidation(validationConfig);
@@ -79,6 +85,10 @@ popupProfile.addEventListener("click", (evt) => {
   closeModalOnOverlay(evt);
 });
 
+avatarForm.addEventListener("click", (evt) => {
+  closeModalOnOverlay(evt);
+});
+
 // Крестики
 
 popupNewCard.querySelector(".popup__close").addEventListener("click", () => {
@@ -93,6 +103,10 @@ popupImageElement
 
 popupProfile.querySelector(".popup__close").addEventListener("click", () => {
   closeModal(popupProfile);
+});
+
+avatarForm.querySelector(".popup__close").addEventListener("click", () => {
+  closeModal(avatarForm);
 });
 
 // Установка слушателя на кнопку открытия формы изменения аватара
@@ -126,17 +140,14 @@ let userId = "";
 function setUserInfo(user) {
   profileTitle.textContent = user.name;
   profileDescription.textContent = user.about;
-  avatarImage.setAttribute(
-    "style",
-    `background-image: url('${user.avatar}')`
-  );
+  avatarImage.setAttribute("style", `background-image: url('${user.avatar}')`);
   userId = user._id;
 }
 
 // Функция для рендеринга карточек на страницу
 export function renderCards(cards, callbacksObject, userId) {
   placesList.innerHTML = "";
-  cards.forEach(card => {
+  cards.forEach((card) => {
     const cardElement = createCard(card, callbacksObject, userId);
     placesList.appendChild(cardElement);
   });

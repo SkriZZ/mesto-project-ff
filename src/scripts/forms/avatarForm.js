@@ -12,13 +12,15 @@ export function handleAvatarFormSubmit(event) {
   function makeRequest() {
     const avatar = avatarFormElement.elements["avatar-link"].value;
     // Отправка запроса на обновление аватара
-    return patchAvatar(avatar)
-      .then((res) => {
-        // Обновление аватара на странице
-        avatarImage.setAttribute("style", `background-image: url('${res.avatar}')`);
-        // Закрытие попапа после успешного обновления аватара
-        closeModal(avatarForm);
-      });
+    return patchAvatar(avatar).then((res) => {
+      // Обновление аватара на странице
+      avatarImage.setAttribute(
+        "style",
+        `background-image: url('${res.avatar}')`
+      );
+      // Закрытие попапа после успешного обновления аватара
+      closeModal(avatarForm);
+    });
   }
 
   // Обработка отправки формы с использованием вспомогательной функции

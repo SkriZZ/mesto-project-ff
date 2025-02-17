@@ -9,45 +9,45 @@ const apiRoutes = {
 
 // Заголовки запроса
 const headers = {
-    Authorization: "a9540a2d-b818-4f3d-871a-b181a450e681",
-    "Content-Type": "application/json",
-  };
+  Authorization: "a9540a2d-b818-4f3d-871a-b181a450e681",
+  "Content-Type": "application/json",
+};
 
-  // Функция для проверки данных
-  const checkData = (data) => {
-    if (data.ok) {
-      return data.json();
-    } else {
-      return Promise.reject(`Error: ${data.status}`);
-    }
-  };
-
-  // Функция для отправки запроса
-const request = (endpoint, options) => {
-    return fetch(`${BASE_URL}/${endpoint}`, options).then(checkData);
+// Функция для проверки данных
+const checkData = (data) => {
+  if (data.ok) {
+    return data.json();
+  } else {
+    return Promise.reject(`Error: ${data.status}`);
   }
+};
 
-  // Получение всех карточек
+// Функция для отправки запроса
+const request = (endpoint, options) => {
+  return fetch(`${BASE_URL}/${endpoint}`, options).then(checkData);
+};
+
+// Получение всех карточек
 const getCards = () => {
-    return request(apiRoutes.cards, {
-      method: "GET",
-      headers,
-    });
-  };
+  return request(apiRoutes.cards, {
+    method: "GET",
+    headers,
+  });
+};
 
-  // Добавление новой карточки
+// Добавление новой карточки
 const postCard = (name, link) => {
-    return request(apiRoutes.cards, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        name,
-        link,
-      }),
-    });
-  };
+  return request(apiRoutes.cards, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      name,
+      link,
+    }),
+  });
+};
 
-  // Удаление карточки по идентификатору
+// Удаление карточки по идентификатору
 const deleteCardApi = (id) => {
   return request(`${apiRoutes.cards}/${id}`, {
     method: "DELETE",
@@ -76,10 +76,10 @@ const patchUser = (name, about) => {
 };
 
 // Добавление лайка карточке
-const addLikeCard = (id)  => {
+const addLikeCard = (id) => {
   return request(`${apiRoutes.cards}/${apiRoutes.likes}/${id}`, {
     method: "PUT",
-    headers
+    headers,
   });
 };
 
@@ -108,5 +108,5 @@ export {
   patchUser,
   addLikeCard,
   deleteLikeCard,
-  patchAvatar
+  patchAvatar,
 };

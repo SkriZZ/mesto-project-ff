@@ -1,5 +1,10 @@
 // Функция для управления текстом кнопки во время загрузки
-function renderLoading(isLoading, button, initialText = "Сохранить", loadingText = "Сохранение...") {
+function renderLoading(
+  isLoading,
+  button,
+  initialText = "Сохранить",
+  loadingText = "Сохранение..."
+) {
   if (isLoading) {
     button.textContent = loadingText;
   } else {
