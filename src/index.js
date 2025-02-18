@@ -22,7 +22,7 @@ import { handleNewCardFormSubmit } from "./scripts/forms/newCardsForm.js";
 
 // Импорт функций для работы с формой редактирования профиля
 import {
-  handleFormSubmit,
+  handleProfileFormSubmit,
   setInitialEditProfileFormValues,
 } from "./scripts/forms/editForm.js";
 
@@ -43,17 +43,6 @@ const avatarImage = document.querySelector(".profile__image");
 // Выполнение инициализации валидации формы
 enableValidation(validationConfig);
 
-// Изменение профиля
-
-const handleProfileFormSubmit = (evt) => {
-  evt.preventDefault();
-  profileTitle.textContent = popupProfileForm.name.value;
-  profileDescription.textContent = popupProfileForm.description.value;
-  closeModal(popupProfile);
-};
-
-popupProfileForm.addEventListener("submit", handleProfileFormSubmit);
-
 // Попап Профиль
 profileEditButton.addEventListener("click", () => {
   clearValidation(popupProfileForm, validationConfig);
@@ -66,44 +55,6 @@ profileEditButton.addEventListener("click", () => {
 newCardButton.addEventListener("click", () => {
   clearValidation(popupNewCard, validationConfig);
   openModal(popupNewCard);
-});
-
-// Клик по оверлею
-
-popupNewCard.addEventListener("click", (evt) => {
-  closeModalOnOverlay(evt);
-});
-
-popupImageElement.addEventListener("click", (evt) => {
-  closeModalOnOverlay(evt);
-});
-
-popupProfile.addEventListener("click", (evt) => {
-  closeModalOnOverlay(evt);
-});
-
-avatarForm.addEventListener("click", (evt) => {
-  closeModalOnOverlay(evt);
-});
-
-// Крестики
-
-popupNewCard.querySelector(".popup__close").addEventListener("click", () => {
-  closeModal(popupNewCard);
-});
-
-popupImageElement
-  .querySelector(".popup__close")
-  .addEventListener("click", () => {
-    closeModal(popupImageElement);
-  });
-
-popupProfile.querySelector(".popup__close").addEventListener("click", () => {
-  closeModal(popupProfile);
-});
-
-avatarForm.querySelector(".popup__close").addEventListener("click", () => {
-  closeModal(avatarForm);
 });
 
 // Установка слушателя на кнопку открытия формы изменения аватара
@@ -151,7 +102,7 @@ export function renderCards(cards, callbacksObject, userId) {
 }
 
 // Установка слушателей для отправки форм на сервер
-popupProfile.addEventListener("submit", handleFormSubmit);
+popupProfile.addEventListener("submit", handleProfileFormSubmit);
 popupNewCard.addEventListener("submit", (event) => {
   handleNewCardFormSubmit(event, callbacksObject, userId);
 });
@@ -167,3 +118,5 @@ Promise.all([getUser(), getCards()])
   .catch((err) => {
     console.error("Произошла ошибка при получении данных:", err);
   });
+
+

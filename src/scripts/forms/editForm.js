@@ -13,7 +13,7 @@ export function setInitialEditProfileFormValues() {
 }
 
 // Обработчик события отправки формы редактирования профиля
-export function handleFormSubmit(evt) {
+export function handleProfileFormSubmit(evt) {
   // Функция для выполнения запроса на сервер для обновления данных профиля
   function makeRequest() {
     const name = nameInput.value;
