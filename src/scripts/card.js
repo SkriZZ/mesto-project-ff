@@ -1,8 +1,5 @@
 import { deleteLikeCard, addLikeCard } from "./api";
-
-const popupImageCaption = document.querySelector(".popup__caption");
-const popupImage = document.querySelector(".popup__image");
-const buttonTypeCard = document.querySelector(".popup_type_image");
+import { popupImageCaption, popupImage, buttonTypeCard } from "../index.js";
 
 // Функция добавления темплейта
 export function createCard(cards, callbacksObject, userId) {

@@ -1,6 +1,6 @@
 // импорты
 import "./pages/index.css";
-import { openModal, closeModal, closeModalOnOverlay } from "./scripts/modal";
+import { openModal } from "./scripts/modal";
 import { createCard, handleLikes } from "./scripts/card";
 import {
   enableValidation,
@@ -35,10 +35,12 @@ const popupNewCard = document.querySelector(".popup_type_new-card");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const popupProfileForm = document.forms["edit-profile"];
-const popupImageElement = document.querySelector(".popup_type_image");
 const avatarForm = document.querySelector(".popup_type_avatar");
 const deleteCardForm = document.forms["delete-card"];
 const avatarImage = document.querySelector(".profile__image");
+export const popupImageCaption = document.querySelector(".popup__caption");
+export const popupImage = document.querySelector(".popup__image");
+export const buttonTypeCard = document.querySelector(".popup_type_image");
 
 // Выполнение инициализации валидации формы
 enableValidation(validationConfig);
@@ -64,12 +66,10 @@ avatarImage.addEventListener("click", () => {
 });
 
 // Функция открытия модального окна с изображением карточки
-function openImagePopup(
-  cardImg,
-  popupImage,
-  popupImageCaption,
-  buttonTypeCard
-) {
+function openImagePopup(cardImg) {
+  const popupImageCaption = document.querySelector(".popup__caption");
+  const popupImage = document.querySelector(".popup__image");
+  const buttonTypeCard = document.querySelector(".popup_type_image");
   popupImage.src = cardImg.src;
   popupImage.alt = cardImg.alt;
   popupImageCaption.textContent = cardImg.alt;
@@ -118,5 +118,3 @@ Promise.all([getUser(), getCards()])
   .catch((err) => {
     console.error("Произошла ошибка при получении данных:", err);
   });
-
-

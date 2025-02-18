@@ -21,20 +21,20 @@ const closeModalOnOverlay = (evt) => {
   }
 };
 
-const popups = document.querySelectorAll('.popup')
+const popups = document.querySelectorAll(".popup");
 
-      popups.forEach((popup) => {
-          popup.addEventListener('mousedown', (evt) => {
-              if (evt.target.classList.contains('popup_opened')) {
-                  closeModal(popup)
-              }
-              if (evt.target.classList.contains('popup__close')) {
-                closeModal(popup)
-              }
-              if (evt.target === evt.currentTarget) {
-                closeModal(evt.currentTarget);
-              }
-          })
-      })
+popups.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("popup_opened")) {
+      closeModal(popup);
+    }
+    if (evt.target.classList.contains("popup__close")) {
+      closeModal(popup);
+    }
+    if (evt.target === evt.currentTarget) {
+      closeModal(evt.currentTarget);
+    }
+  });
+});
 
 export { openModal, closeModal, closeModalOnOverlay };
