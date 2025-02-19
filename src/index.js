@@ -38,9 +38,6 @@ const popupProfileForm = document.forms["edit-profile"];
 const avatarForm = document.querySelector(".popup_type_avatar");
 const deleteCardForm = document.forms["delete-card"];
 const avatarImage = document.querySelector(".profile__image");
-export const popupImageCaption = document.querySelector(".popup__caption");
-export const popupImage = document.querySelector(".popup__image");
-export const buttonTypeCard = document.querySelector(".popup_type_image");
 
 // Выполнение инициализации валидации формы
 enableValidation(validationConfig);

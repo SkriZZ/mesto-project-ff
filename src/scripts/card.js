@@ -1,5 +1,4 @@
 import { deleteLikeCard, addLikeCard } from "./api";
-import { popupImageCaption, popupImage, buttonTypeCard } from "../index.js";
 
 // Функция добавления темплейта
 export function createCard(cards, callbacksObject, userId) {
@@ -41,6 +40,9 @@ export function createCard(cards, callbacksObject, userId) {
 
   // Слушатель добавления картинки
   cardImage.addEventListener("click", () => {
+    const popupImageCaption = document.querySelector(".popup__caption");
+    const popupImage = document.querySelector(".popup__image");
+    const buttonTypeCard = document.querySelector(".popup_type_image");
     openImageCallback(cardImage, popupImage, popupImageCaption, buttonTypeCard);
   });
 
