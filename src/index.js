@@ -63,13 +63,13 @@ avatarImage.addEventListener("click", () => {
 });
 
 // Функция открытия модального окна с изображением карточки
-function openImagePopup(cardImg) {
+function openImagePopup(link, title) {
    const popupImageCaption = document.querySelector(".popup__caption");
    const popupImage = document.querySelector(".popup__image");
    const buttonTypeCard = document.querySelector(".popup_type_image");
-  popupImage.src = cardImg.src;
-  popupImage.alt = cardImg.alt;
-  popupImageCaption.textContent = cardImg.alt;
+  popupImage.src = link;
+  popupImage.alt = title;
+  popupImageCaption.textContent = title;
   openModal(buttonTypeCard);
 }
 
