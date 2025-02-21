@@ -38,7 +38,7 @@ export function createCard(cards, callbacksObject, userId) {
 
   // Слушатель добавления картинки
   cardImage.addEventListener("click", () => {
-    openImageCallback(cardImage.src, cardTitle.textContent);
+    openImageCallback(cards.link, cards.name);
   });
 
   // Возвращаем созданный темплейт
