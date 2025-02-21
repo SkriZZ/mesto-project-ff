@@ -6,9 +6,7 @@ export function createCard(cards, callbacksObject, userId) {
     callbacksObject;
   // Создание темплейта
   const cardTemplate = document.querySelector("#card-template");
-  const cardElement = cardTemplate.content
-    .querySelector(".places__item")
-    .cloneNode(true);
+  const cardElement = cardTemplate.content.querySelector(".places__item").cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
   const cardLikeButton = cardElement.querySelector(".card__like-button");
@@ -40,11 +38,7 @@ export function createCard(cards, callbacksObject, userId) {
 
   // Слушатель добавления картинки
   cardImage.addEventListener("click", () => {
-    const popupImageCaption = document.querySelector(".popup__caption");
-    const popupImage = document.querySelector(".popup__image");
-    const buttonTypeCard = document.querySelector(".popup_type_image");
-    console.log(cardImage)
-    openImageCallback(cardImage, popupImage, popupImageCaption, buttonTypeCard);
+    openImageCallback(cardImage, cardImage.src, cardTitle.textContent);
   });
 
   // Возвращаем созданный темплейт
