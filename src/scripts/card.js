@@ -43,6 +43,7 @@ export function createCard(cards, callbacksObject, userId) {
     const popupImageCaption = document.querySelector(".popup__caption");
     const popupImage = document.querySelector(".popup__image");
     const buttonTypeCard = document.querySelector(".popup_type_image");
+    console.log(cardImage)
     openImageCallback(cardImage, popupImage, popupImageCaption, buttonTypeCard);
   });
 
